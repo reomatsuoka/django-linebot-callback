@@ -21,10 +21,13 @@ class CallbackView(View):
         body = request.body.decode('utf-8')
 
         try:
+            # 署名を検証して、問題なければhandleに定義されている関数を呼び出す
             handler.handle(body, signature)
         except InvalidSignatureError:
+            # 署名検証で失敗した場合は、例外をあげる
             return HttpResponseBadRequest()
         except LineBotApiError as e:
+            # APIのエラーが発生した場合は、例外をあげる
             print(e)
             return HttpResponseServerError()
 
