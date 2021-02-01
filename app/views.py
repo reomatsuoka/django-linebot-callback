@@ -14,7 +14,7 @@ handler = WebhookHandler(settings.CHANNEL_SECRET)
 
 class CallbackView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse('OK')
+        return HttpResponse('ko')
 
     def post(self, request, *args, **kwargs):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
